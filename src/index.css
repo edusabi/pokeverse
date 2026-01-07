@@ -1,0 +1,39 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+:root {
+  --bg: #0F172A;       
+  --card: #1E293B;     
+  --text: #E5E7EB;     
+  --primary: #FACC15;  
+  --accent: #EF4444;   
+}
+
+
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--text);
+  font-family: 'Inter', Arial, sans-serif;
+}
+
+
+button {
+  background: var(--primary);
+  color: #000;
+  border: 2px solid var(--text);
+  padding: 10px 18px;
+  border-radius: 8px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: 0.2s;
+  letter-spacing: 1px;
+}
+
+button:hover {
+  filter: brightness(0.9);
+}
+
