@@ -42,6 +42,7 @@ const Navbar = () => {
         className={styles.avatar}
         onClick={() => setOpen(!open)}
       >
+        <h2 style={{margin:"0 1rem 0 0"}}>PokeVerse</h2>
         <img
           src={SPRITE_URL(selectedPokemon.id)}
           onError={(e) => (e.target.src = FALLBACK)}
@@ -72,7 +73,7 @@ const Navbar = () => {
       )}
 
       <nav className={styles.nav}>
-        <NavLink to="/">Home</NavLink>
+        <NavLink to="/">Inicio</NavLink>
         <NavLink to="/tipos">Tipos</NavLink>
         <NavLink to="/trocas">Trocas</NavLink>
         <NavLink to="/missoes">Missões</NavLink>

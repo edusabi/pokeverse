@@ -1,0 +1,117 @@
+.container {
+  width: 100%;
+}
+
+.form {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.label {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.labelText {
+  font-size: 0.75rem;
+  color: #cbd5f5;
+}
+
+/* INPUTS */
+.input {
+  height: 34px;
+  padding: 0 10px;
+  border-radius: 6px;
+  border: 1px solid #334155;
+  background: #020617;
+  color: #e5e7eb;
+  font-size: 0.8rem;
+}
+
+.input:focus {
+  outline: none;
+  border-color: #facc15;
+}
+
+/* RADIO */
+.radioGroup {
+  display: flex;
+  gap: 16px;
+  margin-top: 4px;
+}
+
+.radioOption {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 0.75rem;
+  color: #e5e7eb;
+  cursor: pointer;
+}
+
+.radioInput {
+  accent-color: #facc15;
+}
+
+/* BUTTON */
+.button {
+  margin-top: 8px;
+  height: 36px;
+  border-radius: 6px;
+  border: none;
+  background: #facc15;
+  color: #000;
+  font-weight: 600;
+  font-size: 0.85rem;
+  cursor: pointer;
+}
+
+.passwordField {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+.passwordField .input {
+  width: 100%;
+  padding-right: 40px;
+}
+
+.togglePassword {
+  position: absolute;
+  right: 5px;
+  top: -10px;
+  background: none !important;
+  border: none;
+  color: var(--primary);
+  font-size: 1.1rem;
+  cursor: pointer;
+}
+
+.passwordRules {
+  margin: 6px 0 12px;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  font-size: 0.75rem;
+}
+
+.passwordRules p {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  transition: all 0.25s ease;
+}
+
+.invalid {
+  color: #64748b;
+  opacity: 0.6;
+}
+
+.valid {
+  color: #22c55e;
+  font-weight: 600;
+  transform: translateX(4px);
+}

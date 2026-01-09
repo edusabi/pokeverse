@@ -7,6 +7,7 @@ import TrocaPokemon from "./pages/TrocaPokemon/TrocaPokemon";
 import MissoesDiarias from "./pages/MissoesDiarias/MissoesDiarias";
 import LojaItens from "./pages/LojaItens/LojaItens";
 import Perfil from "./pages/Perfil/Perfil";
+import PageInitial from "./pages/PageInitial/PageInitial";
 
 ///components
 import Navbar from "./components/Navbar/Navbar";
@@ -19,6 +20,7 @@ function App() {
         <Navbar/>
           <Routes>
             <Route path="/" element={<Home/>} />
+            <Route path="/paginaInicial" element={<PageInitial/>} />
             <Route path="/tipos" element={<SistemaTipos/>} />
             <Route path="/trocas" element={<TrocaPokemon/>} />
             <Route path="/missoes" element={<MissoesDiarias/>} />
