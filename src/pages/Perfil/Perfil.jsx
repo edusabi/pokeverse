@@ -25,7 +25,7 @@ const Perfil = () => {
   useEffect(() => {
     const fetchProfile = async () => {
       try {
-        const response = await axios.get("https://pokeverse-rho.vercel.app/users/perfil", {
+        const response = await axios.get("https://pokeverse.discloud.app//users/perfil", {
           withCredentials: true,
         });
 
@@ -65,12 +65,12 @@ const Perfil = () => {
         formData.append("image", imageFile);
       }
 
-      await axios.post("https://pokeverse-rho.vercel.app/users/perfil", formData, {
+      await axios.post("https://pokeverse.discloud.app/users/perfil", formData, {
         withCredentials: true,
       });
 
       const profileResponse = await axios.get(
-        "https://pokeverse-rho.vercel.app/users/perfil",
+        "https://pokeverse.discloud.app/users/perfil",
         { withCredentials: true }
       );
 
