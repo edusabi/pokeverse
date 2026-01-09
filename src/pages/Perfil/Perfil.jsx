@@ -34,9 +34,12 @@ const Perfil = () => {
           setCreatedProfile(response.data);
         }
       } catch (error) {
-        // Se der 404, significa que o usuário ainda não tem perfil. 
+        // Se der 404, significa que o usuário ainda não tem perfil.
         // Apenas silenciamos o erro e deixamos o form aparecer.
-        console.log("Usuário sem perfil ou erro na busca:", error.response?.status);
+        console.log(
+          "Usuário sem perfil ou erro na busca:",
+          error.response?.status
+        );
       } finally {
         setLoadingData(false);
       }
@@ -62,25 +65,21 @@ const Perfil = () => {
         formData.append("image", imageFile);
       }
 
-      const response = await axios.post(
+      await axios.post("http://localhost:3000/users/perfil", formData, {
+        withCredentials: true,
+      });
+
+      const profileResponse = await axios.get(
         "http://localhost:3000/users/perfil",
-        formData,
-        {
-          withCredentials: true,
-          headers: {
-            "Content-Type": "multipart/form-data",
-          },
-        }
+        { withCredentials: true }
       );
 
-      // Atualiza a tela com o perfil recém-criado
-      setCreatedProfile(response.data);
+      setCreatedProfile(profileResponse.data);
+
       setMessage("Perfil criado com sucesso!");
     } catch (error) {
       console.error(error);
-      setMessage(
-        error.response?.data?.error || "Erro ao criar perfil"
-      );
+      setMessage(error.response?.data?.error || "Erro ao criar perfil");
     } finally {
       setLoading(false);
     }
@@ -88,7 +87,11 @@ const Perfil = () => {
 
   // Se estiver carregando a verificação inicial, mostra um loading simples
   if (loadingData) {
-    return <div className={styles.container}><p>Carregando perfil...</p></div>;
+    return (
+      <div className={styles.container}>
+        <p>Carregando perfil...</p>
+      </div>
+    );
   }
 
   return (
@@ -160,9 +163,7 @@ const Perfil = () => {
                   alt={firstPokemon.name}
                   className={styles.pokemonPreview}
                 />
-                <p className={styles.pokemonName}>
-                  {firstPokemon.name}
-                </p>
+                <p className={styles.pokemonName}>{firstPokemon.name}</p>
               </div>
             )}
 
@@ -177,9 +178,7 @@ const Perfil = () => {
                   const file = e.target.files[0];
                   setImageFile(file);
                   if (file) {
-                    setTrainerImagePreview(
-                      URL.createObjectURL(file)
-                    );
+                    setTrainerImagePreview(URL.createObjectURL(file));
                   }
                 }}
               />
@@ -188,9 +187,7 @@ const Perfil = () => {
             {/* PREVIEW DA IMAGEM DO TREINADOR NO FORM */}
             {trainerImagePreview && (
               <div className={styles.previewBox}>
-                <p className={styles.previewTitle}>
-                  Preview do treinador
-                </p>
+                <p className={styles.previewTitle}>Preview do treinador</p>
                 <img
                   src={trainerImagePreview}
                   alt="Preview treinador"
@@ -212,9 +209,7 @@ const Perfil = () => {
         </>
       ) : (
         <div className={styles.profileCard}>
-          <h2 className={styles.profileTitle}>
-            Perfil do Treinador
-          </h2>
+          <h2 className={styles.profileTitle}>Perfil do Treinador</h2>
 
           {createdProfile.trainer_image_url ? (
             <img
@@ -227,10 +222,18 @@ const Perfil = () => {
           )}
 
           <div className={styles.profileInfo}>
-            <p><strong>Nome:</strong> {createdProfile.trainer_name}</p>
-            <p><strong>Sexo:</strong> {createdProfile.trainer_gender}</p>
-            <p><strong>Bio:</strong> {createdProfile.trainer_bio}</p>
-            <p><strong>Moedas:</strong> 🪙 {createdProfile.coins}</p>
+            <p>
+              <strong>Nome:</strong> {createdProfile.trainer_name}
+            </p>
+            <p>
+              <strong>Sexo:</strong> {createdProfile.trainer_gender}
+            </p>
+            <p>
+              <strong>Bio:</strong> {createdProfile.trainer_bio}
+            </p>
+            <p>
+              <strong>Moedas:</strong> 🪙 {createdProfile.coins}
+            </p>
           </div>
 
           <div className={styles.pokemonCard}>
@@ -246,7 +249,6 @@ const Perfil = () => {
 
             {createdProfile.stats && createdProfile.stats.tem_evolucao ? (
               <div className={styles.progressContainer}>
-                
                 {/* Texto explicativo */}
                 <div className={styles.progressLabel}>
                   <span>Próx: {createdProfile.stats.proximo_nome}</span>
@@ -255,12 +257,11 @@ const Perfil = () => {
 
                 {/* Barra visual */}
                 <div className={styles.progressBarBack}>
-                  <div 
-                    className={styles.progressBarFill} 
+                  <div
+                    className={styles.progressBarFill}
                     style={{ width: `${createdProfile.stats.porcentagem}%` }}
                   ></div>
                 </div>
-
               </div>
             ) : (
               /* Se for nível máximo (Charizard/Venusaur/Blastoise) */
@@ -268,7 +269,6 @@ const Perfil = () => {
                 <span className={styles.maxLevelBadge}>Nível Máximo</span>
               </div>
             )}
-
           </div>
         </div>
       )}
@@ -276,13 +276,18 @@ const Perfil = () => {
       {openSelector && (
         <EscolherInicial
           onSelect={(pokemon) => {
+            const now = new Date().toISOString();
+
             setFirstPokemon({
               id: pokemon.id,
               name: pokemon.name,
               types: pokemon.types,
               image: pokemon.image,
               level: 5,
+              born_at: now, // 🔥
+              is_shiny: false, // 🔥
             });
+
             setOpenSelector(false);
           }}
           onClose={() => setOpenSelector(false)}
