@@ -1,7 +1,7 @@
 const SistemaTipos = () => {
   return (
     <div>
-        <h1>SistemaTipos</h1>
+        <h1>Página não feita</h1>
     </div>
   )
 }

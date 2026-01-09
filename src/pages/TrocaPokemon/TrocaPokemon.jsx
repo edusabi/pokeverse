@@ -1,7 +1,8 @@
 const TrocaPokemon = () => {
   return (
     <div>
-        <h1>Troca pokemon</h1>
+
+        <h1>Página não feita</h1>
     </div>
   )
 }

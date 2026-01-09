@@ -1,7 +1,7 @@
 const LojaItens = () => {
   return (
     <div>
-        <h1>Loja itens</h1>
+        <h1>Página não feita</h1>
     </div>
   )
 }

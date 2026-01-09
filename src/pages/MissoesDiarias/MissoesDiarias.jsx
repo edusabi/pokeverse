@@ -1,7 +1,7 @@
 const MissoesDiarias = () => {
   return (
     <div>
-        <h1>MissoesDiarias</h1>
+        <h1>Página não feita</h1>
     </div>
   )
 }
