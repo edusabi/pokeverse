@@ -17,20 +17,21 @@ import Navbar from "./components/Navbar/Navbar";
 function App() {
   const [user, setUser] = useState(null);
   const [loadingUser, setLoadingUser] = useState(true);
+useEffect(() => {
+  const fetchUser = async () => {
+    try {
+      const res = await axios.get("https://pokeverse.discloud.app/users/user", {
+        withCredentials: true,
+      });
 
-  useEffect(() => {
-    const fetchUser = async () => {
-      try {
-        const res = await axios.get("https://pokeverse.discloud.app/me", {
-          withCredentials: true,
-        });
-        setUser(res.data.user);
-      } catch {
-        setUser(null);
-      } finally {
-        setLoadingUser(false);
-      }
-    };
+      setUser(res.data); // ✅ AQUI
+    } catch (err) {
+      setUser(null);
+    } finally {
+      setLoadingUser(false);
+    }
+  };
+
 
     fetchUser();
   }, []);

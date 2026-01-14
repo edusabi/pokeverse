@@ -9,7 +9,7 @@ const FALLBACK =
   "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/25.png";
 
 const Navbar = ({ user, loading }) => {
-  
+
   const [pokemonList, setPokemonList] = useState([]);
   const [open, setOpen] = useState(false);
   
