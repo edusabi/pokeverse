@@ -25,7 +25,7 @@ const Perfil = () => {
   useEffect(() => {
     const fetchProfile = async () => {
       try {
-        const response = await axios.get("https://pokeverse.discloud.app//users/perfil", {
+        const response = await axios.get("https://pokeverse.discloud.app/users/perfil", {
           withCredentials: true,
         });
 
