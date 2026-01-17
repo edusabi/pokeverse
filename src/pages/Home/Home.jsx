@@ -21,10 +21,10 @@ const Home = ({ onLoginSuccess }) => {
     setToastMessage("Login feito com sucesso! 🚀");
     setShowToast(true);
 
-    // 🔥 SÓ atualiza o user
-    await onLoginSuccess();
-
-    setTimeout(() => setShowToast(false), 1500);
+    setTimeout(async () => {
+      await onLoginSuccess(); 
+      setShowToast(false);
+    }, 2500);
   };
 
   return (
