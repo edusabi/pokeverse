@@ -4,10 +4,10 @@ import Register from "../Auth/Register/Register";
 import styles from "./Home.module.css";
 import { FaCheck } from "react-icons/fa6";
 import { useNavigate } from "react-router-dom";
-import axios from "axios";
 
-const Home = () => {
+const Home = ({ onLoginSuccess }) => {
   const navigate = useNavigate();
+
   const [isLogin, setIsLogin] = useState(true);
   const [showToast, setShowToast] = useState(false);
   const [toastMessage, setToastMessage] = useState("");
@@ -23,28 +23,16 @@ const Home = () => {
   };
 
   const handleLoginSuccess = async () => {
-    try {
-      const { data } = await axios.get(
-        "https://pokeverse.discloud.app/users/me",
-        { withCredentials: true }
-      );
+    setToastMessage("Login feito com sucesso! 🚀");
+    setShowToast(true);
 
-      if (!data) return;
+    // 🔥 Atualiza o user global no App.jsx
+    await onLoginSuccess();
 
-      if (!data.trainer_profile_created) {
-        setToastMessage("Login feito com sucesso! Redirecionando...");
-        setShowToast(true);
-
-        setTimeout(() => {
-          setShowToast(false);
-          navigate("/perfil");
-        }, 3000);
-      } else {
-        navigate("/paginaInicial");
-      }
-    } catch (error) {
-      console.error("Erro ao validar sessão:", error);
-    }
+    setTimeout(() => {
+      setShowToast(false);
+      navigate("/paginaInicial");
+    }, 800);
   };
 
   return (
