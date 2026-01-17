@@ -18,22 +18,25 @@ function App() {
   const [user, setUser] = useState(null);
   const [loadingUser, setLoadingUser] = useState(true);
 
-  useEffect(() => {
-    const fetchUser = async () => {
-      try {
-        const res = await axios.get("https://pokeverse.discloud.app/users/user", {
-          withCredentials: true,
-        });
-        setUser(res.data.user);
-      } catch {
-        setUser(null);
-      } finally {
-        setLoadingUser(false);
-      }
-    };
+ useEffect(() => {
+  const fetchUser = async () => {
+    try {
+      const res = await axios.get(
+        "https://pokeverse.discloud.app/users/user",
+        { withCredentials: true }
+      );
+
+      setUser(res.data); 
+    } catch (err) {
+      setUser(null);
+    } finally {
+      setLoadingUser(false);
+    }
+  };
 
     fetchUser();
   }, []);
+
 
   return (
     <BrowserRouter>
