@@ -42,7 +42,7 @@ const Navbar = ({ user, loading }) => {
         className={styles.avatar}
         onClick={() => setOpenPokemon(!openPokemon)}
       >
-        <h2>Pokeverse</h2>
+        <h2 style={{ marginRight: ".5rem" }}>Pokeverse</h2>
         <img
           src={SPRITE_URL(selectedPokemon.id)}
           onError={(e) => (e.target.src = FALLBACK)}
